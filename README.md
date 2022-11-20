@@ -25,7 +25,7 @@ docker run --rm -it \
 
 Or
 
-`make run`
+`make run LICENSE_KEY=<license key>`
 ## Usage
 
 List containers:
