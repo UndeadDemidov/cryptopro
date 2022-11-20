@@ -4,7 +4,7 @@
 
 - Put CryptoPRO CSP 5.0 deb package to `dist/linux-amd64_deb.tgz` path
 
-- Build image `docker build -t cryptopro .`
+- Build image `docker build -t cryptopro .` or `make build`
 
 ## Run
 ### Prerequisites
@@ -22,6 +22,10 @@ docker run --rm -it \
     -e "LICENSE_KEY=40406-A0000-0219M-Q778D-1Y222" \
     cryptopro bash
 ```
+
+Or
+
+`make run`
 ## Usage
 
 List containers:
