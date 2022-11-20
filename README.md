@@ -4,10 +4,17 @@
 
 - Put CryptoPRO CSP 5.0 deb package to `dist/linux-amd64_deb.tgz` path
 
-- Build image `docker build -t registry.91.team/cryptopro/csp:latest .`
+- Build image `docker build -t cryptopro .`
 
 ## Run
+### Prerequisites
+Install Crypto Pro locally and install signing keys.
+Check keys are installed properly.
+```
+ls /var/opt/cprocsp/keys/$(whoami)
+```
 
+Linux, Mac OS
 ```
 docker run --rm -it \
     -v "/var/opt/cprocsp/keys/$(whoami):/var/opt/cprocsp/keys/root" \
@@ -15,11 +22,6 @@ docker run --rm -it \
     -e "LICENSE_KEY=40406-A0000-0219M-Q778D-1Y222" \
     cryptopro bash
 ```
-
-## Push to registry
-
-`docker push registry.91.team/cryptopro/csp:latest`
-
 ## Usage
 
 List containers:
@@ -33,7 +35,7 @@ List certs:
 Sign data:
 
 ```
-cryptcp -sign -der -detach -nochain -norev -thumbprint yyyy /home/certmgr.pdf /home/certmgr.pdf.sig -pin xxxx
+cryptcp -sign -der -detach -nochain -norev -thumbprint <thumbprint_of_your_sign_key> /home/<signing_filename> /home/<signing_filename>.sig -pin <password_of_your_sign_key>
 ```
 
 Export key from USB token to PFX file:
