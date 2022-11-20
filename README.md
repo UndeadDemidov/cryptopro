@@ -39,7 +39,16 @@ List certs:
 Sign data:
 
 ```
-cryptcp -sign -der -detach -nochain -norev -thumbprint <thumbprint_of_your_sign_key> /home/<signing_filename> /home/<signing_filename>.sig -pin <password_of_your_sign_key>
+cryptcp \
+    -sign \
+    -der \
+    -detach \
+    -nochain \
+    -norev \
+    -thumbprint <thumbprint_of_your_sign_key> \
+    /home/<signing_filename> \
+    /home/<signing_filename>.sig \
+    -pin <password_of_your_sign_key>
 ```
 
 Export key from USB token to PFX file:
