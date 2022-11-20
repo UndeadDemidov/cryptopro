@@ -10,9 +10,10 @@
 
 ```
 docker run --rm -it \
-    -v "$(pwd)/keys:/var/opt/cprocsp/keys/root" \
+    -v "/var/opt/cprocsp/keys/$(whoami):/var/opt/cprocsp/keys/root" \
+    -v "$(pwd)/docs:/home" \
     -e "LICENSE_KEY=40406-A0000-0219M-Q778D-1Y222" \
-    registry.91.team/cryptopro/csp:latest bash
+    cryptopro bash
 ```
 
 ## Push to registry
@@ -32,14 +33,7 @@ List certs:
 Sign data:
 
 ```
-cryptcp \
-  -signf \
-  -cert \
-  -detached \
-  -nochain \
-  -thumbprint bc47e3bdb7b19b9112df674b49f4b51148209324 \
-  -pin 11111111 \
-  -dir ./ ./sign_test.txt
+cryptcp -sign -der -detach -nochain -norev -thumbprint yyyy /home/certmgr.pdf /home/certmgr.pdf.sig -pin xxxx
 ```
 
 Export key from USB token to PFX file:
@@ -53,3 +47,10 @@ Import key from PFX file:
 `csptestf -absorb -certs -autoprov`
 
 `ls /var/opt/cprocsp/keys/root`
+
+install keys thru volume
+
+http://blog.pws.ru/2015/08/11/install-private-key/?ysclid=l9qor8j3hw425871117
+
+ver
+`csptest -enum -info`
